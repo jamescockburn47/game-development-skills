@@ -1,4 +1,4 @@
-"""Package the two independent skills; optionally install the same payloads."""
+"""Package the independent skills; optionally install the same payloads."""
 from pathlib import Path
 import argparse
 import os
@@ -6,12 +6,18 @@ import re
 import shutil
 import zipfile
 
-NAMES = ('evidence-led-game-development', 'open-world-game-development')
+NAMES = ('evidence-led-game-development', 'open-world-game-development',
+         'automated-game-demo-video')
 ROOT = Path(__file__).resolve().parent
 SHARED = ('references/design-review.md', 'scripts/build_design_review.py',
           'scripts/review_document.py', 'assets/design-review-content.js', 'assets/design-review-sections.css',
           'assets/design-review.html', 'assets/design-review.css', 'assets/design-review.js',
           'assets/design-review-example.json')
+EXTRA_FILES = {
+    NAMES[0]: tuple(name for name in SHARED if not name.startswith('references/')),
+    NAMES[1]: tuple(name for name in SHARED if not name.startswith('references/')),
+    NAMES[2]: ('assets/shot-plan-template.md', 'scripts/inspect_video.py'),
+}
 
 
 def check_shared(sync=False):
@@ -31,7 +37,7 @@ def payload(name):
     files = [Path('SKILL.md'), Path('agents/openai.yaml'),
              *sorted(path.relative_to(source)
                      for path in (source / 'references').glob('*.md')),
-             *(Path(name) for name in SHARED if not name.startswith('references/'))]
+             *(Path(relative) for relative in EXTRA_FILES[name])]
     result = {}
     for relative in files:
         path = source / relative
@@ -91,7 +97,7 @@ def main():
             shutil.copyfile(ROOT / 'skills' / name, target)
             if target.read_bytes() != data:
                 raise ValueError(f'Installed content mismatch: {target}')
-        print(f'Installed both skills in {codex_root / "skills"}')
+        print(f'Installed {len(NAMES)} skills in {codex_root / "skills"}')
 
 
 if __name__ == '__main__':

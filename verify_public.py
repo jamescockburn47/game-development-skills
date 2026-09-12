@@ -63,7 +63,7 @@ def generated_files():
 def source_files():
     files = {Path(name) for name in ('README.md', 'AGENTS.md', '.gitignore', '.gitattributes',
                                     'package_skills.py', 'verify_public.py', '.github/workflows/verify.yml',
-                                    'public_tests/test_review.py')}
+                                    'public_tests/test_review.py', 'public_tests/test_video.py')}
     if (ROOT / 'LICENSE').is_file():
         files.add(Path('LICENSE'))
     for name in packer.NAMES:

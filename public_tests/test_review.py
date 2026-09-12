@@ -166,6 +166,16 @@ class PublicReviewTests(unittest.TestCase):
 
 
 class ArchiveTests(unittest.TestCase):
+    def test_video_skill_is_self_contained_without_game_design_resources(self):
+        name = 'automated-game-demo-video'
+        files = packer.payload(name)
+        self.assertIn(f'{name}/scripts/inspect_video.py', files)
+        self.assertIn(f'{name}/assets/shot-plan-template.md', files)
+        self.assertFalse(any('design-review' in path for path in files))
+        for design_skill in packer.NAMES[:2]:
+            self.assertIn(f'{design_skill}/scripts/build_design_review.py',
+                          packer.payload(design_skill))
+
     def test_archive_bytes_do_not_depend_on_host_metadata(self):
         original = zipfile.ZipInfo
         results = []

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Automated Game Demo Videos"
+  short_description: "Direct, record and edit demos from real gameplay"
+  default_prompt: "Use $automated-game-demo-video to make a demo video of this game."
