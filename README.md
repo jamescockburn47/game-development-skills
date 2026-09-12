@@ -44,7 +44,17 @@ It first records a short trial to check control, framing, timing and sound. It t
 
 The method draws on practical experience recording several games: cinematic camera tours, real gameplay demonstrations, repeatable frame-by-frame capture, editing and final-file checks. It preserves lessons from failed captures too, including old weather leaking into a new shot, animation advancing twice, and a recording failing while its preview keeps playing.
 
-It adapts to browser, native, mobile, 2D and 3D games through the tools the assistant actually has. Engine recorders, replays, game controls and screen recording are possible routes. Landscape, portrait and other exports depend on available encoders and playback support. It cannot grant control of an inaccessible device or promise every engine and format has been tested.
+It covers 2D as well as 3D games, including platformers, puzzles, strategy games, pixel art and text adventures. Shot selection changes with the game: a puzzle needs readable choices and consequences; a platformer needs visible movement, jumps and landings. Landscape, portrait and other exports depend on available encoders and playback support.
+
+To take control, the assistant inspects the project and chooses a workable route:
+
+- **Normal controls:** operate keyboard, mouse or touch through available browser or permitted device automation.
+- **Existing game tools:** use replays, test controls, developer commands or engine camera tools.
+- **Small recording hooks:** where needed, add isolated code to load a starting position, supply inputs, control the camera and start recording.
+
+For example, it could load a platformer checkpoint, move right, jump a gap, confirm the landing and record that sequence. The jump still uses the game's actual movement and collision rules. The assistant handles the inputs and shot selection; you supply the request and any preferences.
+
+The skill supplies the method, while the coding environment supplies the tools. Browser, native and mobile games need an available control-and-recording route, which the assistant checks with a short trial. The skill cannot grant access to an inaccessible device or promise that every engine and format has been tested.
 
 The skill distinguishes ordinary play, staged starting conditions, cinematic effects and offline rendering. A polished film must not imply that granted resources were earned or that offline footage proves real-time performance. Technical checks catch problems such as the wrong dimensions, missing audio or a damaged file; watching and listening remain separate checks. Recording an existing game does not restart the game-design questionnaire, and making a video does not authorize publishing it.
 
