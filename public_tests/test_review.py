@@ -1,11 +1,15 @@
 """Public trust-boundary tests for the packaged design-review builder."""
 import copy
+import contextlib
 import importlib.util
+import io
 import json
 from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest import mock
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +38,7 @@ def load_module(path, name):
 
 builder = load_module(SKILL / "scripts" / "build_design_review.py", "public_review_builder")
 document = load_module(SKILL / "scripts" / "review_document.py", "public_review_document")
+packer = load_module(ROOT / "package_skills.py", "public_skill_packer")
 
 
 def completed_review():
@@ -158,6 +163,23 @@ class PublicReviewTests(unittest.TestCase):
             progress["scope"] += " Expanded work outside the approved scope."
             with self.assertRaises(ValueError):
                 document.check_archive(progress, output)
+
+
+class ArchiveTests(unittest.TestCase):
+    def test_archive_bytes_do_not_depend_on_host_metadata(self):
+        original = zipfile.ZipInfo
+        results = []
+        with tempfile.TemporaryDirectory() as folder:
+            for host in (0, 3):
+                class HostZipInfo(original):
+                    def __init__(self, *args, **kwargs):
+                        super().__init__(*args, **kwargs)
+                        self.create_system = host
+                target = Path(folder) / f'host-{host}.zip'
+                with mock.patch.object(zipfile, 'ZipInfo', HostZipInfo), contextlib.redirect_stdout(io.StringIO()):
+                    packer.archive(target, {'synthetic/SKILL.md': b'Synthetic portability fixture\n'})
+                results.append(target.read_bytes())
+        self.assertEqual(results[0], results[1])
 
 
 if __name__ == "__main__":

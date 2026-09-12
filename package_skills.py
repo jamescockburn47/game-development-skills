@@ -58,6 +58,7 @@ def archive(path, files):
     with zipfile.ZipFile(path, 'w', compression=zipfile.ZIP_DEFLATED) as bundle:
         for name, data in sorted(files.items()):
             entry = zipfile.ZipInfo(name, (2026, 1, 1, 0, 0, 0))
+            entry.create_system = 3  # Stable Unix metadata on Windows and Unix hosts.
             entry.compress_type = zipfile.ZIP_DEFLATED
             entry.external_attr = 0o644 << 16
             bundle.writestr(entry, data)
