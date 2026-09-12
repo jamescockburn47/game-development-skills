@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Game plan review</title>
+  <style>
+__REVIEW_CSS__
+  </style>
+  <style>
+__REVIEW_SECTIONS_CSS__
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#game-section">Skip to the game plan</a>
+
+  <header class="page-header">
+    <div class="header-mark" aria-hidden="true">
+      <svg viewBox="0 0 56 56" role="img">
+        <path d="M9 28C9 17.5 17.5 9 28 9s19 8.5 19 19-8.5 19-19 19S9 38.5 9 28Z"/>
+        <path d="m20 36 4-11 12-5-5 12-11 4Zm4-11 7 7"/>
+      </svg>
+    </div>
+    <div class="header-copy">
+      <p class="eyebrow">Game plan</p>
+      <h1 id="review-title">Review the proposed game direction</h1>
+      <p id="review-summary" class="lede">Check the decisions that define the first playable build, adjust any choice that needs to change, and return your prepared response in chat.</p>
+      <p id="plan-version" class="plan-version">Working plan</p>
+      <details class="technical-details">
+        <summary>Version details</summary>
+        <div id="review-technical">
+          <p id="review-meta" class="meta">A focused checkpoint before implementation begins.</p>
+        </div>
+      </details>
+      <nav class="review-nav" aria-label="Jump to review section">
+        <a href="#game-section">Your game</a>
+        <a href="#decisions-title">Choices</a>
+        <a href="#progress-section">Progress</a>
+        <a href="#your-review-title">Reply</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="demo-notice" class="demo-notice" role="note" hidden>
+    <strong>Illustrative example</strong>
+    <span>This page shows sample decisions to demonstrate the review format. It is not your game brief.</span>
+  </div>
+
+  <section id="game-section" class="plan-section game-section" aria-labelledby="game-title" hidden>
+    <div class="plan-section-heading">
+      <p class="eyebrow">The idea</p>
+      <h2 id="game-title">Your game, in your own words</h2>
+      <p id="game-premise" class="plan-introduction"></p>
+    </div>
+    <div id="user-description" hidden>
+      <p id="description-help">You write the game description. The AI keeps your words and uses them to help plan how to make it. A rough idea is enough to begin; you can develop it later.</p>
+      <label for="game-description">Describe the game you want to make <span>required</span></label>
+      <textarea id="game-description" maxlength="12000" rows="9" aria-describedby="description-help description-status" placeholder="Write in your own words. What does the player do? What makes it enjoyable? You can mention the world, goals, mood or games that inspire you." required></textarea>
+      <p id="description-status" role="status" aria-live="polite"></p>
+      <p>Return your description using the reply section below. Changes stay on this device until you copy or download your reply and send it in chat.</p>
+      <a class="description-reply" href="#your-review-title">Go to your reply ↓</a>
+    </div>
+    <div id="legacy-game" class="game-plan-grid">
+      <section aria-labelledby="game-role-label">
+        <h3 id="game-role-label">Who you are</h3>
+        <p id="game-role"></p>
+      </section>
+      <section aria-labelledby="game-goal-label">
+        <h3 id="game-goal-label">What you do</h3>
+        <p id="game-goal"></p>
+      </section>
+      <section class="game-session" aria-labelledby="game-session-label">
+        <h3 id="game-session-label">A few minutes of play</h3>
+        <ol id="game-session"></ol>
+      </section>
+      <section aria-labelledby="game-arc-label">
+        <h3 id="game-arc-label">How the game grows</h3>
+        <p id="game-arc"></p>
+      </section>
+      <section aria-labelledby="game-style-label">
+        <h3 id="game-style-label">Look and feel</h3>
+        <p id="game-style"></p>
+      </section>
+    </div>
+  </section>
+
+  <section id="inspiration-section" class="plan-section" aria-labelledby="inspiration-title" hidden>
+    <div class="plan-section-heading">
+      <p class="eyebrow">References, with a purpose</p>
+      <h2 id="inspiration-title">Ideas to learn from</h2>
+    </div>
+    <div id="inspirations" class="inspiration-grid"></div>
+  </section>
+
+  <section id="progress-section" class="plan-section progress-section" aria-labelledby="progress-title" hidden>
+    <div class="plan-section-heading">
+      <p class="eyebrow">Living plan</p>
+      <h2 id="progress-title">Where we are now</h2>
+      <p id="progress-summary" class="plan-introduction"></p>
+    </div>
+    <div class="progress-overview">
+      <p><strong>Current stage</strong><span id="progress-stage"></span></p>
+      <p><strong>Next move</strong><span id="progress-next"></span></p>
+    </div>
+    <div class="progress-lists">
+      <section aria-labelledby="progress-items-label">
+        <h3 id="progress-items-label">Work in view</h3>
+        <ul id="progress-items" class="detail-list"></ul>
+      </section>
+      <section aria-labelledby="progress-history-label">
+        <h3 id="progress-history-label">What has changed</h3>
+        <ul id="progress-history" class="detail-list"></ul>
+      </section>
+    </div>
+    <p id="progress-approval" class="progress-approval"></p>
+  </section>
+
+  <div class="scope-banner" role="note">
+    <strong>What your agreement covers</strong>
+    <span>You are agreeing to what we’re making next. Publishing the game or spending money would need a separate agreement.</span>
+  </div>
+
+  <main class="review-layout">
+    <section class="decisions-column" aria-labelledby="decisions-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your choices</p>
+          <h2 id="decisions-title">Choices to review</h2>
+        </div>
+        <span class="count-pill"><span id="decision-count">0</span> choices</span>
+      </div>
+
+      <div class="filter-bar">
+        <label for="filter-select">Show</label>
+        <select id="filter-select">
+          <option value="all">All choices</option>
+          <option value="changed">Changed by me</option>
+          <option value="recommended">Suggestions and working assumptions</option>
+        </select>
+      </div>
+
+      <noscript>
+        <p class="noscript-message">This review needs JavaScript to display and change the proposed decisions. Open it in a browser with JavaScript enabled, or ask for the decisions in chat.</p>
+      </noscript>
+      <div id="decisions" class="decision-list" aria-live="polite" aria-busy="true"></div>
+    </section>
+
+    <aside class="review-sidebar" aria-label="Review details and response">
+      <section class="panel action-panel" aria-labelledby="your-review-title">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Your reply</p>
+            <h2 id="your-review-title">Tell us what you think</h2>
+          </div>
+          <span class="count-pill change-count"><span id="changes-count">0</span> changed</span>
+        </div>
+
+        <div id="change-notice" class="change-notice" hidden>
+          <strong>We’ll update the plan</strong>
+          <p>Your changes may affect other choices. Here is what we’ll need to look at again.</p>
+          <div id="change-impact"></div>
+        </div>
+
+        <label class="notes-label" for="review-notes">Changes or questions <span>optional</span></label>
+        <textarea id="review-notes" maxlength="3000" rows="5" placeholder="What would you like to change, add or ask about?"></textarea>
+
+        <p id="review-status" class="status-message" role="status" aria-live="polite">No edits made.</p>
+        <div class="primary-actions">
+          <button id="approve-review" class="button primary" type="button" disabled>Agree with this plan</button>
+          <button id="request-revision" class="button secondary" type="button">Suggest changes</button>
+        </div>
+        <button id="reset-review" class="button text-button" type="button">Reset edits</button>
+
+        <p class="delivery-note">This page cannot send your reply. After choosing an option, copy or download it and return it in chat.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="next-steps-title">
+        <p class="eyebrow">The route from here</p>
+        <h2 id="next-steps-title">How we’ll make it</h2>
+        <ol id="next-steps" class="detail-list"></ol>
+      </section>
+
+      <section class="panel" aria-labelledby="build-scope-title">
+        <p class="eyebrow">The next playable version</p>
+        <h2 id="build-scope-title">What we’re making next</h2>
+        <p id="build-scope" class="panel-copy"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="acceptance-title">
+        <p class="eyebrow">What success looks like</p>
+        <h2 id="acceptance-title">How we’ll know it works</h2>
+        <ul id="acceptance" class="detail-list"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="boundaries-title">
+        <p class="eyebrow">Saved for later</p>
+        <h2 id="boundaries-title">What’s outside this version</h2>
+        <ul id="boundaries" class="detail-list"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="risks-title">
+        <p class="eyebrow">Things to watch</p>
+        <h2 id="risks-title">What may need tuning</h2>
+        <ul id="risks" class="detail-list"></ul>
+      </section>
+
+      <section class="panel questions-panel" aria-labelledby="questions-title">
+        <p class="eyebrow">Before we begin</p>
+        <h2 id="questions-title">Questions to settle</h2>
+        <ul id="questions" class="detail-list"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <section id="response-panel" class="response-panel" aria-labelledby="response-title" hidden>
+    <div>
+      <p class="eyebrow">Ready to return</p>
+      <h2 id="response-title">Your prepared reply</h2>
+      <p id="response-summary">Choose an option above to prepare a short summary of your reply.</p>
+    </div>
+    <details id="response-details" class="response-details">
+      <summary>Details included with your reply</summary>
+      <textarea id="response-output" rows="10" readonly aria-label="Prepared review response details"></textarea>
+    </details>
+    <div class="response-actions">
+      <button id="copy-response" class="button primary" type="button">Copy response</button>
+      <button id="download-response" class="button secondary" type="button">Download response</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>We’ll return to this plan as the game develops. New ideas go into an updated plan for you to consider; progress on agreed work is recorded here too.</p>
+  </footer>
+
+  <script id="review-data" type="application/json">__REVIEW_DATA__</script>
+  <script>
+__REVIEW_JS__
+  </script>
+</body>
+</html>

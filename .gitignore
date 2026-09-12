@@ -1,0 +1,20 @@
+# Only the reviewed public payload is eligible for version control.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/AGENTS.md
+!/package_skills.py
+!/verify_public.py
+!/skills/
+!/dist/
+!/public_tests/
+!/.github/
+!/examples/
+/examples/*
+!/examples/public/
+**/__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

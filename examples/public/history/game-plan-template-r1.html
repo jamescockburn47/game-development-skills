@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Game plan review</title>
+  <style>
+:root {
+  color-scheme: light;
+  --cream: #f7f2e8;
+  --paper: #fffdf8;
+  --ink: #132a2f;
+  --muted: #5c6d6d;
+  --teal: #0f6b67;
+  --teal-dark: #084d4b;
+  --teal-soft: #dcece7;
+  --gold: #b6752d;
+  --gold-soft: #f5e7d1;
+  --line: #d8d8cc;
+  --danger: #8d3c2f;
+  --shadow: 0 18px 55px rgba(20, 42, 47, 0.09);
+  --radius: 18px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+a { color: var(--teal-dark); text-underline-offset: 0.2em; }
+a:hover { color: var(--teal); }
+[id] { scroll-margin-top: 1.25rem; }
+.review-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1rem; }
+.review-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.92rem; }
+
+body {
+  margin: 0;
+  min-width: 280px;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(15, 107, 103, 0.11), transparent 28rem),
+    linear-gradient(180deg, #fbf8f0 0, var(--cream) 28rem);
+  font-size: 16px;
+  line-height: 1.58;
+}
+
+button, select, textarea { font: inherit; }
+
+button, select { min-height: 44px; }
+
+button { cursor: pointer; }
+
+:focus-visible {
+  outline: 3px solid #147f79;
+  outline-offset: 3px;
+}
+
+[hidden] { display: none !important; }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 20;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background: var(--ink);
+  color: white;
+}
+
+.skip-link:focus { top: 1rem; }
+
+.page-header,
+.scope-banner,
+.demo-notice,
+.review-layout,
+.response-panel,
+footer {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4rem;
+  padding: 4.5rem 0 2.25rem;
+}
+
+.header-mark {
+  flex: 0 0 56px;
+  color: var(--teal);
+}
+
+.header-mark svg { display: block; width: 56px; fill: none; stroke: currentColor; stroke-width: 2; }
+.header-mark svg path:last-child { stroke-width: 3; }
+
+.header-copy { max-width: 800px; }
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--teal);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, p { overflow-wrap: anywhere; }
+
+h1 {
+  max-width: 19ch;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+h3 { margin: 0; font-size: 1rem; line-height: 1.35; }
+
+.lede { max-width: 68ch; margin: 1.2rem 0 0; color: #334d50; font-size: 1.08rem; }
+.meta { margin: 0.8rem 0 0; color: var(--muted); font-size: 0.9rem; }
+
+.scope-banner {
+  display: flex;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #b9d5ce;
+  border-radius: 12px;
+  background: var(--teal-soft);
+  color: #214b4b;
+}
+
+.scope-banner strong { flex: 0 0 auto; color: var(--teal-dark); }
+
+.demo-notice {
+  display: flex;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e0bb85;
+  border-radius: 12px;
+  background: var(--gold-soft);
+  color: #5e3915;
+}
+
+.demo-notice strong { flex: 0 0 auto; }
+
+.review-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(310px, 0.8fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.decisions-column, .panel, .response-panel {
+  border: 1px solid rgba(91, 109, 109, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.decisions-column { padding: clamp(1.25rem, 3vw, 2rem); }
+.review-sidebar { display: grid; gap: 1rem; }
+.panel { padding: 1.35rem; box-shadow: 0 9px 30px rgba(20, 42, 47, 0.06); }
+.action-panel { border-top: 4px solid var(--teal); }
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.section-heading.compact { align-items: flex-start; }
+
+.count-pill, .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.28rem 0.68rem;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.change-count { background: var(--gold-soft); color: #714112; }
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+  padding: 0.8rem 0;
+  border-block: 1px solid var(--line);
+}
+
+.filter-bar label { color: var(--muted); font-size: 0.88rem; font-weight: 750; }
+
+select, textarea {
+  width: 100%;
+  border: 1px solid #aebbb7;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+}
+
+select { width: auto; padding: 0.55rem 2.5rem 0.55rem 0.75rem; }
+textarea { resize: vertical; min-height: 7.5rem; padding: 0.8rem; line-height: 1.5; }
+textarea[readonly] { background: #f5f4ee; }
+
+.decision-list { display: grid; gap: 1rem; }
+
+.decision-card {
+  padding: 1.3rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid #a9b9b5;
+  border-radius: 14px;
+  background: var(--paper);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.decision-card:hover { border-color: #9dbcb6; box-shadow: 0 10px 24px rgba(20, 42, 47, 0.07); }
+.decision-card.changed { border-left-color: var(--gold); background: #fffaf2; }
+
+.decision-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.decision-heading h3 { font-size: 1.12rem; }
+.badge { background: #edf0ec; color: #465c5b; }
+.badge.source-user, .source-user .badge { background: #e5edfa; color: #294f7b; }
+.badge.source-agent, .source-agent .badge { background: var(--teal-soft); color: var(--teal-dark); }
+.badge.source-assumption, .source-assumption .badge { background: var(--gold-soft); color: #714112; }
+
+.rationale, .impact { margin: 0.7rem 0 0; color: var(--muted); font-size: 0.92rem; }
+.rationale strong, .impact strong { color: var(--ink); }
+.decision-input { margin-top: 1rem; }
+.decision-input label { display: block; margin-bottom: 0.35rem; font-size: 0.85rem; font-weight: 750; }
+.decision-input input, .decision-input select, .decision-input textarea { max-width: 100%; }
+
+.change-notice {
+  margin: 1.2rem 0;
+  padding: 1rem;
+  border: 1px solid #e0bb85;
+  border-radius: 12px;
+  background: var(--gold-soft);
+  color: #5e3915;
+}
+
+.change-notice p { margin: 0.35rem 0; }
+#change-impact ul { margin-bottom: 0; padding-left: 1.2rem; }
+.notes-label { display: block; margin: 1.2rem 0 0.4rem; font-weight: 750; }
+.notes-label span { color: var(--muted); font-size: 0.82rem; font-weight: 500; }
+.status-message { min-height: 1.5em; margin: 0.8rem 0; color: var(--muted); font-size: 0.86rem; }
+
+.primary-actions, .response-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+
+.button {
+  padding: 0.65rem 0.95rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.button.primary { background: var(--teal); color: white; }
+.button.primary:hover { background: var(--teal-dark); }
+.button.secondary { border-color: #9db8b4; background: transparent; color: var(--teal-dark); }
+.button.secondary:hover { background: var(--teal-soft); }
+.button.text-button { margin-top: 0.55rem; padding-inline: 0; background: transparent; color: var(--muted); text-decoration: underline; }
+.button:disabled { cursor: not-allowed; opacity: 0.5; }
+.delivery-note { margin: 1rem 0 0; color: var(--muted); font-size: 0.82rem; }
+
+.detail-list { margin: 1rem 0 0; padding-left: 1.25rem; }
+.detail-list li + li { margin-top: 0.65rem; }
+.detail-list h3 { margin-bottom: 0.15rem; }
+.detail-list p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.panel-copy { margin: 1rem 0 0; color: var(--muted); }
+.detail-list:empty::after { content: "None specified."; color: var(--muted); font-size: 0.9rem; }
+.questions-panel:has(.detail-list:empty) { border-style: dashed; box-shadow: none; }
+.noscript-message { padding: 1rem; border-radius: 10px; background: #f8dfda; color: var(--danger); }
+
+.response-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(300px, 1.35fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-top: 4px solid var(--teal);
+}
+
+.response-panel textarea, .response-actions { grid-column: 2; }
+.response-panel p { margin: 0.5rem 0 0; color: var(--muted); }
+
+footer { padding: 2.25rem 0 3rem; color: var(--muted); font-size: 0.82rem; }
+
+@media (max-width: 820px) {
+  .page-header { padding-top: 2.5rem; }
+  .review-layout { grid-template-columns: 1fr; }
+  .response-panel { grid-template-columns: 1fr; }
+  .response-panel textarea, .response-actions { grid-column: auto; }
+}
+
+@media (max-width: 520px) {
+  .page-header, .scope-banner, .demo-notice, .review-layout, .response-panel, footer { width: min(100% - 24px, 1180px); }
+  .page-header { gap: 0.75rem; }
+  .header-mark { display: none; }
+  .scope-banner, .demo-notice, .section-heading { align-items: flex-start; flex-direction: column; }
+  .filter-bar { align-items: stretch; flex-direction: column; }
+  select { width: 100%; }
+  .primary-actions .button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+@media print {
+  :root { --cream: white; --paper: white; --shadow: none; }
+  body { background: white; color: black; font-size: 11pt; }
+  .page-header, .scope-banner, .demo-notice, .review-layout, .response-panel, footer { width: 100%; }
+  .page-header { padding-top: 0; }
+  .filter-bar, .primary-actions, .text-button, .response-actions, .skip-link { display: none !important; }
+  .review-layout { grid-template-columns: 1fr; }
+  .decisions-column, .panel, .response-panel, .decision-card { break-inside: avoid; box-shadow: none; }
+  .review-sidebar { margin-top: 1rem; }
+  .response-panel { grid-template-columns: 1fr; }
+  .response-panel textarea { grid-column: auto; border: 0; min-height: 12rem; }
+}
+
+  </style>
+  <style>
+.plan-version {
+  width: fit-content;
+  margin: 1rem 0 0;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.technical-details { margin-top: 0.7rem; color: var(--muted); font-size: 0.86rem; }
+.technical-details summary, .response-details summary { width: fit-content; cursor: pointer; font-weight: 750; }
+.technical-details .meta { margin-top: 0.45rem; }
+
+.plan-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 1.5rem;
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+  border: 1px solid rgba(91, 109, 109, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.96);
+  box-shadow: var(--shadow);
+}
+
+.game-section { border-top: 4px solid var(--teal); }
+#user-description { max-width: 80ch; }
+#user-description label { display: block; font-weight: 750; margin: 1.2rem 0 0.65rem; }
+#user-description label span { color: var(--muted); font-size: 0.85rem; font-weight: 500; }
+#game-description { display: block; width: 100%; min-height: 220px; padding: 1rem; line-height: 1.6; }
+#description-status { color: var(--teal-dark); font-weight: 650; }
+.description-reply { display: inline-flex; min-height: 44px; align-items: center; }
+.plan-section-heading { max-width: 72ch; }
+.plan-introduction { margin: 0.9rem 0 0; color: #334d50; font-size: 1.06rem; }
+
+.game-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.game-plan-grid > section, .progress-lists > section {
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.game-plan-grid p, .game-plan-grid ol { margin: 0.55rem 0 0; color: var(--muted); }
+.game-plan-grid ol { padding-left: 1.35rem; }
+.game-plan-grid li + li { margin-top: 0.4rem; }
+.game-session { grid-row: span 2; }
+
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.inspiration-card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.inspiration-card p { margin: 0.55rem 0 0; color: var(--muted); }
+.inspiration-card a { display: inline-flex; min-height: 44px; align-items: center; margin-top: 0.45rem; }
+
+.progress-overview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.progress-overview p { margin: 0; padding: 1rem; border-radius: 12px; background: var(--teal-soft); }
+.progress-overview strong, .progress-overview span { display: block; }
+.progress-overview span { margin-top: 0.3rem; color: #334d50; }
+.progress-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+.progress-approval { margin: 1rem 0 0; padding: 1rem; border-left: 4px solid var(--gold); background: var(--gold-soft); }
+
+.response-details { grid-column: 2; }
+.response-details textarea { display: block; margin-top: 0.75rem; }
+#response-summary { white-space: pre-wrap; }
+.archive-notice { padding: 0.8rem; background: var(--gold-soft); border-radius: 10px; }
+
+@media (max-width: 820px) {
+  .game-plan-grid, .progress-overview, .progress-lists { grid-template-columns: 1fr; }
+  .game-session { grid-row: auto; }
+  .response-details { grid-column: auto; }
+}
+
+@media (max-width: 520px) {
+  .plan-section { width: min(100% - 24px, 1180px); padding: 1.2rem; }
+}
+
+@media print {
+  .plan-section { width: 100%; box-shadow: none; }
+  .response-details { grid-column: auto; }
+  .response-details[open] summary { display: none; }
+}
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#game-section">Skip to the game plan</a>
+
+  <header class="page-header">
+    <div class="header-mark" aria-hidden="true">
+      <svg viewBox="0 0 56 56" role="img">
+        <path d="M9 28C9 17.5 17.5 9 28 9s19 8.5 19 19-8.5 19-19 19S9 38.5 9 28Z"/>
+        <path d="m20 36 4-11 12-5-5 12-11 4Zm4-11 7 7"/>
+      </svg>
+    </div>
+    <div class="header-copy">
+      <p class="eyebrow">Game plan</p>
+      <h1 id="review-title">Review the proposed game direction</h1>
+      <p id="review-summary" class="lede">Check the decisions that define the first playable build, adjust any choice that needs to change, and return your prepared response in chat.</p>
+      <p id="plan-version" class="plan-version">Working plan</p>
+      <details class="technical-details">
+        <summary>Version details</summary>
+        <div id="review-technical">
+          <p id="review-meta" class="meta">A focused checkpoint before implementation begins.</p>
+        </div>
+      </details>
+      <nav class="review-nav" aria-label="Jump to review section">
+        <a href="#game-section">Your game</a>
+        <a href="#decisions-title">Choices</a>
+        <a href="#progress-section">Progress</a>
+        <a href="#your-review-title">Reply</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="demo-notice" class="demo-notice" role="note" hidden>
+    <strong>Illustrative example</strong>
+    <span>This page shows sample decisions to demonstrate the review format. It is not your game brief.</span>
+  </div>
+
+  <section id="game-section" class="plan-section game-section" aria-labelledby="game-title" hidden>
+    <div class="plan-section-heading">
+      <p class="eyebrow">The idea</p>
+      <h2 id="game-title">Your game, in your own words</h2>
+      <p id="game-premise" class="plan-introduction"></p>
+    </div>
+    <div id="user-description" hidden>
+      <p id="description-help">You write the game description. The AI keeps your words and uses them to help plan how to make it. A rough idea is enough to begin; you can develop it later.</p>
+      <label for="game-description">Describe the game you want to make <span>required</span></label>
+      <textarea id="game-description" maxlength="12000" rows="9" aria-describedby="description-help description-status" placeholder="Write in your own words. What does the player do? What makes it enjoyable? You can mention the world, goals, mood or games that inspire you." required></textarea>
+      <p id="description-status" role="status" aria-live="polite"></p>
+      <p>Return your description using the reply section below. Changes stay on this device until you copy or download your reply and send it in chat.</p>
+      <a class="description-reply" href="#your-review-title">Go to your reply ↓</a>
+    </div>
+    <div id="legacy-game" class="game-plan-grid">
+      <section aria-labelledby="game-role-label">
+        <h3 id="game-role-label">Who you are</h3>
+        <p id="game-role"></p>
+      </section>
+      <section aria-labelledby="game-goal-label">
+        <h3 id="game-goal-label">What you do</h3>
+        <p id="game-goal"></p>
+      </section>
+      <section class="game-session" aria-labelledby="game-session-label">
+        <h3 id="game-session-label">A few minutes of play</h3>
+        <ol id="game-session"></ol>
+      </section>
+      <section aria-labelledby="game-arc-label">
+        <h3 id="game-arc-label">How the game grows</h3>
+        <p id="game-arc"></p>
+      </section>
+      <section aria-labelledby="game-style-label">
+        <h3 id="game-style-label">Look and feel</h3>
+        <p id="game-style"></p>
+      </section>
+    </div>
+  </section>
+
+  <section id="inspiration-section" class="plan-section" aria-labelledby="inspiration-title" hidden>
+    <div class="plan-section-heading">
+      <p class="eyebrow">References, with a purpose</p>
+      <h2 id="inspiration-title">Ideas to learn from</h2>
+    </div>
+    <div id="inspirations" class="inspiration-grid"></div>
+  </section>
+
+  <section id="progress-section" class="plan-section progress-section" aria-labelledby="progress-title" hidden>
+    <div class="plan-section-heading">
+      <p class="eyebrow">Living plan</p>
+      <h2 id="progress-title">Where we are now</h2>
+      <p id="progress-summary" class="plan-introduction"></p>
+    </div>
+    <div class="progress-overview">
+      <p><strong>Current stage</strong><span id="progress-stage"></span></p>
+      <p><strong>Next move</strong><span id="progress-next"></span></p>
+    </div>
+    <div class="progress-lists">
+      <section aria-labelledby="progress-items-label">
+        <h3 id="progress-items-label">Work in view</h3>
+        <ul id="progress-items" class="detail-list"></ul>
+      </section>
+      <section aria-labelledby="progress-history-label">
+        <h3 id="progress-history-label">What has changed</h3>
+        <ul id="progress-history" class="detail-list"></ul>
+      </section>
+    </div>
+    <p id="progress-approval" class="progress-approval"></p>
+  </section>
+
+  <div class="scope-banner" role="note">
+    <strong>What your agreement covers</strong>
+    <span>You are agreeing to what we’re making next. Publishing the game or spending money would need a separate agreement.</span>
+  </div>
+
+  <main class="review-layout">
+    <section class="decisions-column" aria-labelledby="decisions-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your choices</p>
+          <h2 id="decisions-title">Choices to review</h2>
+        </div>
+        <span class="count-pill"><span id="decision-count">0</span> choices</span>
+      </div>
+
+      <div class="filter-bar">
+        <label for="filter-select">Show</label>
+        <select id="filter-select">
+          <option value="all">All choices</option>
+          <option value="changed">Changed by me</option>
+          <option value="recommended">Suggestions and working assumptions</option>
+        </select>
+      </div>
+
+      <noscript>
+        <p class="noscript-message">This review needs JavaScript to display and change the proposed decisions. Open it in a browser with JavaScript enabled, or ask for the decisions in chat.</p>
+      </noscript>
+      <div id="decisions" class="decision-list" aria-live="polite" aria-busy="true"></div>
+    </section>
+
+    <aside class="review-sidebar" aria-label="Review details and response">
+      <section class="panel action-panel" aria-labelledby="your-review-title">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Your reply</p>
+            <h2 id="your-review-title">Tell us what you think</h2>
+          </div>
+          <span class="count-pill change-count"><span id="changes-count">0</span> changed</span>
+        </div>
+
+        <div id="change-notice" class="change-notice" hidden>
+          <strong>We’ll update the plan</strong>
+          <p>Your changes may affect other choices. Here is what we’ll need to look at again.</p>
+          <div id="change-impact"></div>
+        </div>
+
+        <label class="notes-label" for="review-notes">Changes or questions <span>optional</span></label>
+        <textarea id="review-notes" maxlength="3000" rows="5" placeholder="What would you like to change, add or ask about?"></textarea>
+
+        <p id="review-status" class="status-message" role="status" aria-live="polite">No edits made.</p>
+        <div class="primary-actions">
+          <button id="approve-review" class="button primary" type="button" disabled>Agree with this plan</button>
+          <button id="request-revision" class="button secondary" type="button">Suggest changes</button>
+        </div>
+        <button id="reset-review" class="button text-button" type="button">Reset edits</button>
+
+        <p class="delivery-note">This page cannot send your reply. After choosing an option, copy or download it and return it in chat.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="next-steps-title">
+        <p class="eyebrow">The route from here</p>
+        <h2 id="next-steps-title">How we’ll make it</h2>
+        <ol id="next-steps" class="detail-list"></ol>
+      </section>
+
+      <section class="panel" aria-labelledby="build-scope-title">
+        <p class="eyebrow">The next playable version</p>
+        <h2 id="build-scope-title">What we’re making next</h2>
+        <p id="build-scope" class="panel-copy"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="acceptance-title">
+        <p class="eyebrow">What success looks like</p>
+        <h2 id="acceptance-title">How we’ll know it works</h2>
+        <ul id="acceptance" class="detail-list"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="boundaries-title">
+        <p class="eyebrow">Saved for later</p>
+        <h2 id="boundaries-title">What’s outside this version</h2>
+        <ul id="boundaries" class="detail-list"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="risks-title">
+        <p class="eyebrow">Things to watch</p>
+        <h2 id="risks-title">What may need tuning</h2>
+        <ul id="risks" class="detail-list"></ul>
+      </section>
+
+      <section class="panel questions-panel" aria-labelledby="questions-title">
+        <p class="eyebrow">Before we begin</p>
+        <h2 id="questions-title">Questions to settle</h2>
+        <ul id="questions" class="detail-list"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <section id="response-panel" class="response-panel" aria-labelledby="response-title" hidden>
+    <div>
+      <p class="eyebrow">Ready to return</p>
+      <h2 id="response-title">Your prepared reply</h2>
+      <p id="response-summary">Choose an option above to prepare a short summary of your reply.</p>
+    </div>
+    <details id="response-details" class="response-details">
+      <summary>Details included with your reply</summary>
+      <textarea id="response-output" rows="10" readonly aria-label="Prepared review response details"></textarea>
+    </details>
+    <div class="response-actions">
+      <button id="copy-response" class="button primary" type="button">Copy response</button>
+      <button id="download-response" class="button secondary" type="button">Download response</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>We’ll return to this plan as the game develops. New ideas go into an updated plan for you to consider; progress on agreed work is recorded here too.</p>
+  </footer>
+
+  <script id="review-data" type="application/json">{"schema_version": 3, "review_id": "game-plan-template", "revision": 1, "example": true, "title": "Your game starts with your idea", "summary": "Write the game description in your own words. We\u2019ll use it to ask useful questions, research relevant examples and prepare a plan you can change and approve.", "scope": "No game has been designed yet. This page shows how your description, choices and progress will stay together throughout development.", "game": {"description": "", "recorded_from": null}, "decisions": [{"id": "platform", "label": "Where would you like people to play?", "value": "undecided", "source": "assumption", "editable": true, "rationale": "Nothing has been chosen. You can give a preference now or decide after we understand your game.", "affects": ["step:2", "step:3", "check:2"], "options": [{"value": "undecided", "label": "I haven\u2019t decided", "impact": "After reading your description, we can explain the options that suit it."}, {"value": "browser", "label": "In a web browser", "impact": "The plan will consider the screens and controls people use to open your game."}, {"value": "desktop", "label": "A computer app", "impact": "The plan will consider installation and the computers you want to support."}, {"value": "mobile", "label": "On a phone or tablet", "impact": "The plan will consider touch controls, small screens and how people get the game."}]}], "next_steps": [{"title": "Start with your game description", "detail": "You write what you want to make. We keep your wording and ask you about anything important that is missing."}, {"title": "Settle the practical choices", "detail": "Together we consider who will play, where it will run, difficulty and the size of the first version. Any AI recommendation is clearly labelled."}, {"title": "Review the plan before building", "detail": "We add relevant research examples, proposed work and ways to check it. You can change the choices and approve a revised plan before building begins."}], "acceptance": ["Your description is kept in your own words. Missing details become questions for you.", "Practical recommendations fit your description and the people you want to play.", "You can understand and change the plan, and nothing is built before you approve it."], "boundaries": ["This is an empty review template, not a proposed game or permission to build.", "The AI does not write, expand or rewrite your game description.", "Publishing a game or spending money needs a separate agreement."], "risks": [], "open_questions": ["Your game description is still needed."], "inspirations": [], "development": {"purpose": "proposal", "stage": "idea", "updated": "2026-09-12", "summary": "We are waiting for your idea. No game-specific choices, reference research or building have begun.", "next": "Write your description above, then prepare a reply and return it in chat.", "approved_plan": null, "milestones": [{"title": "Receive your description", "status": "planned", "detail": "Your own account of the game you want to create.", "evidence": null}, {"title": "Prepare a plan with you", "status": "planned", "detail": "Ask focused questions and explain the practical recommendations that follow from your description.", "evidence": null}], "change_note": "A blank template ready for the user's own game description."}, "fingerprint": "b24e9d3a66f2b3d6b659f4da7a2574339c6b0e68df94e1858590f983cd3d8581", "history_links": [], "archived_view": true, "current_url": "../design-review.html"}</script>
+  <script>
+/* The readable game description, research and development record. */
+function renderGamePlan(data) {
+  const byId = id => document.getElementById(id);
+  const make = (tag, text, className) => {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  };
+  byId('plan-version').textContent = `Version ${data.revision}${data.development ? ` · Updated ${data.development.updated}` : ''}`;
+  if (data.archived_view) {
+    const notice = make('p', 'You are reading an earlier saved copy. ', 'archive-notice');
+    const current = make('a', 'Open the current plan');
+    current.href = data.current_url;
+    notice.append(current);
+    document.querySelector('.header-copy').append(notice);
+    document.querySelector('.action-panel').hidden = true;
+  }
+  if (!data.game) {
+    document.querySelectorAll('.review-nav a[href="#game-section"], .review-nav a[href="#progress-section"]').forEach(link => { link.hidden = true; });
+    document.querySelector('.skip-link').href = '#decisions-title';
+    return;
+  }
+  byId('game-section').hidden = false;
+  byId('user-description').hidden = data.schema_version !== 3;
+  byId('legacy-game').hidden = data.schema_version === 3;
+  if (data.schema_version === 3) {
+    byId('game-premise').hidden = true;
+  } else {
+    byId('game-title').textContent = 'Earlier game description';
+    for (const field of ['premise', 'role', 'goal', 'arc', 'style']) byId(`game-${field}`).textContent = data.game[field];
+    for (const beat of data.game.session) {
+      const li = make('li');
+      li.append(make('strong', beat.title), make('p', beat.detail));
+      byId('game-session').append(li);
+    }
+    byId('game-section').append(make('p', 'This older format does not record a user-written description. Supply your own description before approving any new build.'));
+  }
+  byId('inspiration-section').hidden = false;
+  for (const example of data.inspirations) {
+    const card = make('article', undefined, 'inspiration-card');
+    card.append(make('h3', example.title), make('p', example.observation));
+    for (const [heading, text] of [['What we could learn', example.lesson], ['Our own direction', example.difference]]) {
+      const para = make('p');
+      para.append(make('strong', `${heading}: `), document.createTextNode(text));
+      card.append(para);
+    }
+    const link = make('a', `Explore ${example.title} ↗`);
+    link.href = example.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    card.append(link, make('p', `Source checked ${example.checked} · Opens online`, 'meta'));
+    byId('inspirations').append(card);
+  }
+  if (!data.inspirations.length) byId('inspirations').append(make('p', 'No reference examples have been researched yet. You can suggest one in your reply.'));
+  const dev = data.development;
+  const stages = { idea: 'Planning the game', building: 'Making the game', testing: 'Trying it with players', released: 'Available to players' };
+  const states = { planned: 'Still to do', in_progress: 'Under way', done: 'Done', revisit: 'Needs another look' };
+  byId('progress-section').hidden = false;
+  byId('progress-summary').textContent = dev.summary;
+  byId('progress-stage').textContent = stages[dev.stage];
+  byId('progress-next').textContent = dev.purpose !== 'update' ? dev.next :
+    dev.next === 'none' ? 'No further work is planned.' : data.next_steps[Number(dev.next.split(':')[1]) - 1].title;
+  for (const entry of dev.milestones) {
+    const li = make('li');
+    li.append(make('strong', `${entry.title} — ${states[entry.status]}`), make('p', entry.detail));
+    if (entry.evidence) li.append(make('p', `What supports this: ${entry.evidence}`));
+    byId('progress-items').append(li);
+  }
+  if (!dev.milestones.length) byId('progress-items').append(make('li', 'We will add progress here as work begins.'));
+  byId('progress-history').append(make('li', `This version: ${dev.change_note || data.summary}`));
+  for (const entry of data.history_links || []) {
+    const li = make('li');
+    const link = make('a', `Version ${entry.revision}`);
+    link.href = entry.url;
+    li.append(link, make('p', `${entry.date ? `${entry.date} · ` : ''}${entry.summary}`));
+    byId('progress-history').append(li);
+  }
+  if (!data.history_links?.length) byId('progress-history').append(make('li', 'This is the first saved plan in this folder.'));
+  const agreed = dev.approved_plan;
+  byId('progress-approval').textContent = dev.purpose === 'update' ?
+    `Progress report on the work agreed in version ${agreed.revision}. You can give feedback here; this page does not ask you to approve that work again.` :
+    `This is a proposed plan. ${agreed ? `Version ${agreed.revision} records the earlier agreement. ` : ''}The work described here waits for your agreement.`;
+  if (data.example) byId('progress-approval').prepend(document.createTextNode('Example only. '));
+  if (dev.purpose === 'update') {
+    byId('approve-review').hidden = true;
+    byId('request-revision').textContent = 'Give feedback';
+    document.querySelector('.scope-banner').hidden = true;
+  }
+}
+
+(() => {
+  'use strict';
+  const data = JSON.parse(document.getElementById('review-data').textContent);
+  const byId = id => document.getElementById(id);
+  const make = (tag, text, className) => {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  };
+  const labels = { user: 'You asked for this', agent: 'Our suggestion', assumption: 'Our best guess' };
+  const progressOnly = data.development?.purpose === 'update';
+  const readOnly = data.archived_view === true;
+  const ownsDescription = data.schema_version === 3;
+  const originalDescription = ownsDescription ? data.game.description : '';
+  let description = originalDescription;
+  renderGamePlan(data);
+  const references = new Map([
+    ...data.next_steps.map((step, index) => [`step:${index + 1}`, { label: `Step ${index + 1}`, text: step.title }]),
+    ...data.acceptance.map((check, index) => [`check:${index + 1}`, { label: `Check ${index + 1}`, text: check }])
+  ]);
+  const referenceLink = (ref, detailed = false) => {
+    const target = references.get(ref);
+    const link = make('a', detailed ? `${target.label}: ${target.text}` : target.label);
+    link.href = `#${ref.replace(':', '-')}`;
+    return link;
+  };
+  const baseline = Object.fromEntries(data.decisions.map(item => [item.id, item.value]));
+  let values = { ...baseline };
+  let notes = '';
+  let storageWarning = '';
+  let response = null;
+  const storageKey = `game-design-review:${data.review_id}:${data.fingerprint}`;
+  const allowed = (item, value) => typeof value === 'string' && value.trim() && value.length <= 2000 &&
+    (item.editable !== false || value === item.value) &&
+    (!item.options?.length || item.options.some(option => option.value === value));
+  try {
+    const stored = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (stored && !readOnly) {
+      if (!stored.values || Object.keys(stored.values).length !== data.decisions.length ||
+          typeof stored.notes !== 'string' || stored.notes.length > 3000 ||
+          !data.decisions.every(item => allowed(item, stored.values[item.id]))) throw new Error('Invalid stored draft');
+      values = { ...stored.values };
+      notes = stored.notes;
+      if (ownsDescription) {
+        if (typeof stored.game_description !== 'string' || stored.game_description.length > 12000) throw new Error('Invalid stored description');
+        description = stored.game_description;
+      }
+    }
+  } catch (error) {
+    storageWarning = 'Local draft storage is unavailable or invalid. Copy your response before closing.';
+  }
+  const changed = () => data.decisions.filter(item => values[item.id] !== item.value);
+  const descriptionChanged = () => description !== originalDescription;
+  const hasDescription = () => ownsDescription && !!originalDescription.trim() && !!data.game.recorded_from;
+  const dirty = () => changed().length > 0 || notes.trim().length > 0 || descriptionChanged();
+  const valid = () => data.decisions.every(item => allowed(item, values[item.id])) && description.length <= 12000;
+  const save = () => {
+    try { localStorage.setItem(storageKey, JSON.stringify({ values, notes, game_description: description })); }
+    catch (error) { storageWarning = 'Local saving is unavailable. Copy your response before closing.'; }
+  };
+  const fillList = (id, items, emptyText) => {
+    const list = byId(id);
+    list.replaceChildren(...(items.length ? items : [emptyText]).map(item => make('li', item)));
+  };
+  byId('review-title').textContent = data.title;
+  document.title = `${data.title} — game plan`;
+  byId('review-summary').textContent = data.summary;
+  byId('build-scope').textContent = data.scope;
+  byId('review-meta').textContent = `Revision ${data.revision} · ${data.review_id} · ${data.fingerprint.slice(0, 10)}`;
+  byId('decision-count').textContent = String(data.decisions.length);
+  byId('demo-notice').hidden = !data.example;
+  byId('review-notes').value = notes;
+  if (ownsDescription) {
+    byId('game-description').value = description;
+    byId('game-description').readOnly = readOnly;
+    byId('game-description').addEventListener('input', event => { description = event.target.value; invalidate(); });
+  }
+  for (const [index, check] of data.acceptance.entries()) {
+    const li = make('li', `Check ${index + 1}: ${check}`);
+    li.id = `check-${index + 1}`;
+    byId('acceptance').append(li);
+  }
+  fillList('boundaries', data.boundaries, 'Nothing else has been set aside.');
+  fillList('risks', data.risks, 'Nothing else to flag at this stage.');
+  fillList('questions', data.open_questions, 'No unanswered questions are holding up the next step.');
+  for (const [index, step] of data.next_steps.entries()) {
+    const li = make('li');
+    li.id = `step-${index + 1}`;
+    li.append(make('h3', step.title), make('p', step.detail));
+    byId('next-steps').append(li);
+  }
+  const cards = new Map();
+  for (const item of data.decisions) {
+    const card = make('article', undefined, 'decision-card');
+    card.dataset.decisionId = item.id;
+    const heading = make('div', undefined, 'decision-heading');
+    const label = make('label', item.label);
+    label.htmlFor = `choice-${item.id}`;
+    heading.append(label, make('span', labels[item.source], `badge source-${item.source}`));
+    let input;
+    if (item.options?.length) {
+      input = make('select', undefined, 'decision-input');
+      for (const option of item.options) {
+        const node = make('option', option.label);
+        node.value = option.value;
+        input.append(node);
+      }
+    } else {
+      input = make('textarea', undefined, 'decision-input');
+      input.rows = 2;
+      input.maxLength = 2000;
+    }
+    input.id = `choice-${item.id}`;
+    input.value = values[item.id];
+    input.disabled = readOnly || item.editable === false;
+    input.required = true;
+    const rationale = make('p', item.rationale, 'rationale');
+    rationale.id = `reason-${item.id}`;
+    input.setAttribute('aria-describedby', rationale.id);
+    const impact = make('p', undefined, 'impact');
+    const affected = make('p', 'Affects: ', 'rationale');
+    item.affects.forEach((ref, index) => {
+      if (index) affected.append(document.createTextNode(' · '));
+      affected.append(referenceLink(ref));
+    });
+    const marker = make('span', 'Changed — we’ll update the plan', 'change-label');
+    marker.hidden = true;
+    card.append(heading, input, rationale, impact, affected, marker);
+    if (item.editable === false) card.append(make('p', 'You asked us to keep this. To change it, leave a note below.', 'locked-note'));
+    input.addEventListener('input', () => { values[item.id] = input.value; invalidate(); });
+    byId('decisions').append(card);
+    cards.set(item.id, { card, input, impact, marker });
+  }
+  byId('decisions').setAttribute('aria-busy', 'false');
+  function render() {
+    const edits = changed();
+    const isDirty = dirty();
+    const isValid = valid();
+    const filter = byId('filter-select').value;
+    for (const item of data.decisions) {
+      const nodes = cards.get(item.id);
+      const hasChanged = values[item.id] !== item.value;
+      nodes.card.classList.toggle('changed', hasChanged);
+      nodes.marker.hidden = !hasChanged;
+      nodes.card.hidden = (filter === 'changed' && !hasChanged) || (filter === 'recommended' && item.source === 'user');
+      nodes.input.setAttribute('aria-invalid', String(!allowed(item, values[item.id])));
+      const option = item.options?.find(choice => choice.value === values[item.id]);
+      nodes.impact.textContent = option?.impact || 'If you change this, we’ll update the parts linked below.';
+    }
+    byId('changes-count').textContent = String(edits.length + Number(descriptionChanged()));
+    if (ownsDescription) byId('description-status').textContent = descriptionChanged() ?
+      'Your draft is saved locally. Return it in chat so we can update the plan around your words.' :
+      hasDescription() ? 'Your wording is kept as supplied. You can edit it here when your idea changes.' :
+      'Waiting for your description. The AI will not write this for you; planning follows your reply.';
+    byId('change-notice').hidden = !isDirty;
+    const areas = [...new Set(edits.flatMap(item => item.affects))];
+    const detail = byId('change-impact');
+    detail.replaceChildren(make('p', 'Your edits have not been sent. Your words remain yours; we’ll review the affected choices and next steps when you return your reply.'));
+    if (descriptionChanged()) detail.append(make('p', 'Your game description changed. We’ll check the whole plan against it and show you any revised recommendations before building.'));
+    if (areas.length) {
+      const list = make('ul');
+      for (const ref of areas) {
+        const li = make('li');
+        li.append(referenceLink(ref, true));
+        list.append(li);
+      }
+      detail.append(list);
+    }
+    if (notes.trim()) detail.append(make('p', 'We’ll include your notes when we update the plan.'));
+    byId('approve-review').disabled = readOnly || progressOnly || !hasDescription() || isDirty || !isValid || data.open_questions.length > 0 || data.example === true;
+    byId('request-revision').disabled = readOnly || !isValid;
+    let status = !hasDescription() ? (ownsDescription ? 'Write your description and return it in chat. We need your words before planning or building.' :
+      'This is an older plan. Supply your own game description before approving a new build.') :
+      data.example ? 'This is a sample. Try changing a choice and selecting Suggest changes. Agreement is turned off.' :
+      !isValid ? 'Fill in the empty choices before preparing your reply.' :
+      isDirty ? 'Return your changes in chat. We’ll show you an updated plan before acting on them.' :
+      data.open_questions.length ? 'We need to settle the questions before you agree to the plan.' :
+      progressOnly ? 'This is a progress update. You can leave feedback; the agreed work can continue.' :
+      'Read the plan and tell us what you think. Nothing has been agreed or sent yet.';
+    if (response) status = 'Your reply is ready. Copy or download it and return it in chat. It has not been sent yet.';
+    byId('review-status').textContent = [status, storageWarning].filter(Boolean).join(' ');
+    byId('response-panel').hidden = !response;
+  }
+  function invalidate() {
+    response = null;
+    byId('response-output').value = '';
+    save();
+    render();
+  }
+  function prepare(decision) {
+    if (readOnly || !valid()) return;
+    if (decision === 'approve' && (progressOnly || !hasDescription() || dirty() || data.open_questions.length || data.example)) return;
+    response = { schema_version: ownsDescription ? 2 : 1, review_id: data.review_id, revision: data.revision,
+      fingerprint: data.fingerprint, decision, values: { ...values }, notes, example: data.example || false };
+    if (ownsDescription) response.game_description = description;
+    byId('response-output').value = JSON.stringify(response, null, 2);
+    const displayValue = (item, value) => item.options?.find(option => option.value === value)?.label || value;
+    const edits = changed().map(item => `${item.label}: ${displayValue(item, item.value)} → ${displayValue(item, values[item.id])}.`);
+    if (descriptionChanged()) edits.unshift(`Your game description:\n${description}`);
+    byId('response-summary').textContent = decision === 'approve' ?
+      `You agree with ${data.title}, version ${data.revision}, and the work described in it. Copy or download your reply and send it in chat to confirm.` :
+      [`Your feedback on ${data.title}, version ${data.revision}.`, ...edits, notes.trim() ? `Your note: ${notes}` : '',
+        'Copy or download your reply and return it in chat.'].filter(Boolean).join('\n\n');
+    byId('response-details').open = false;
+    render();
+    byId('copy-response').focus();
+  }
+  byId('review-notes').addEventListener('input', event => { notes = event.target.value; invalidate(); });
+  byId('filter-select').addEventListener('change', render);
+  byId('approve-review').addEventListener('click', () => prepare('approve'));
+  byId('request-revision').addEventListener('click', () => prepare('request_changes'));
+  byId('reset-review').addEventListener('click', () => {
+    values = { ...baseline };
+    notes = '';
+    description = originalDescription;
+    if (ownsDescription) byId('game-description').value = description;
+    byId('review-notes').value = '';
+    for (const item of data.decisions) cards.get(item.id).input.value = item.value;
+    invalidate();
+  });
+  byId('copy-response').addEventListener('click', async () => {
+    if (!response) return;
+    const text = byId('response-output').value;
+    try {
+      await navigator.clipboard.writeText(text);
+      byId('review-status').textContent = 'Copied. Paste your reply into chat. Nothing was sent automatically.';
+    } catch (error) {
+      byId('response-details').open = true;
+      byId('response-output').focus();
+      byId('response-output').select();
+      byId('review-status').textContent = 'Copying was blocked by the browser. Copy the selected response manually, then paste it in chat.';
+    }
+  });
+  byId('download-response').addEventListener('click', () => {
+    if (!response) return;
+    const blob = new Blob([byId('response-output').value], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = make('a');
+    link.href = url;
+    link.download = `${data.review_id}-r${data.revision}-${response.decision}.json`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    byId('review-status').textContent = 'Your reply is ready to download. Attach the file in chat; it has not been sent yet.';
+  });
+  render();
+})();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+.plan-version {
+  width: fit-content;
+  margin: 1rem 0 0;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.technical-details { margin-top: 0.7rem; color: var(--muted); font-size: 0.86rem; }
+.technical-details summary, .response-details summary { width: fit-content; cursor: pointer; font-weight: 750; }
+.technical-details .meta { margin-top: 0.45rem; }
+
+.plan-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 1.5rem;
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+  border: 1px solid rgba(91, 109, 109, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.96);
+  box-shadow: var(--shadow);
+}
+
+.game-section { border-top: 4px solid var(--teal); }
+#user-description { max-width: 80ch; }
+#user-description label { display: block; font-weight: 750; margin: 1.2rem 0 0.65rem; }
+#user-description label span { color: var(--muted); font-size: 0.85rem; font-weight: 500; }
+#game-description { display: block; width: 100%; min-height: 220px; padding: 1rem; line-height: 1.6; }
+#description-status { color: var(--teal-dark); font-weight: 650; }
+.description-reply { display: inline-flex; min-height: 44px; align-items: center; }
+.plan-section-heading { max-width: 72ch; }
+.plan-introduction { margin: 0.9rem 0 0; color: #334d50; font-size: 1.06rem; }
+
+.game-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.game-plan-grid > section, .progress-lists > section {
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.game-plan-grid p, .game-plan-grid ol { margin: 0.55rem 0 0; color: var(--muted); }
+.game-plan-grid ol { padding-left: 1.35rem; }
+.game-plan-grid li + li { margin-top: 0.4rem; }
+.game-session { grid-row: span 2; }
+
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.inspiration-card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.inspiration-card p { margin: 0.55rem 0 0; color: var(--muted); }
+.inspiration-card a { display: inline-flex; min-height: 44px; align-items: center; margin-top: 0.45rem; }
+
+.progress-overview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.progress-overview p { margin: 0; padding: 1rem; border-radius: 12px; background: var(--teal-soft); }
+.progress-overview strong, .progress-overview span { display: block; }
+.progress-overview span { margin-top: 0.3rem; color: #334d50; }
+.progress-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+.progress-approval { margin: 1rem 0 0; padding: 1rem; border-left: 4px solid var(--gold); background: var(--gold-soft); }
+
+.response-details { grid-column: 2; }
+.response-details textarea { display: block; margin-top: 0.75rem; }
+#response-summary { white-space: pre-wrap; }
+.archive-notice { padding: 0.8rem; background: var(--gold-soft); border-radius: 10px; }
+
+@media (max-width: 820px) {
+  .game-plan-grid, .progress-overview, .progress-lists { grid-template-columns: 1fr; }
+  .game-session { grid-row: auto; }
+  .response-details { grid-column: auto; }
+}
+
+@media (max-width: 520px) {
+  .plan-section { width: min(100% - 24px, 1180px); padding: 1.2rem; }
+}
+
+@media print {
+  .plan-section { width: 100%; box-shadow: none; }
+  .response-details { grid-column: auto; }
+  .response-details[open] summary { display: none; }
+}

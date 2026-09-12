@@ -1,0 +1,102 @@
+{
+  "schema_version": 3,
+  "review_id": "game-plan-template",
+  "revision": 1,
+  "example": true,
+  "title": "Your game starts with your idea",
+  "summary": "Write the game description in your own words. We’ll use it to ask useful questions, research relevant examples and prepare a plan you can change and approve.",
+  "scope": "No game has been designed yet. This page shows how your description, choices and progress will stay together throughout development.",
+  "game": {
+    "description": "",
+    "recorded_from": null
+  },
+  "decisions": [
+    {
+      "id": "platform",
+      "label": "Where would you like people to play?",
+      "value": "undecided",
+      "source": "assumption",
+      "editable": true,
+      "rationale": "Nothing has been chosen. You can give a preference now or decide after we understand your game.",
+      "affects": [
+        "step:2",
+        "step:3",
+        "check:2"
+      ],
+      "options": [
+        {
+          "value": "undecided",
+          "label": "I haven’t decided",
+          "impact": "After reading your description, we can explain the options that suit it."
+        },
+        {
+          "value": "browser",
+          "label": "In a web browser",
+          "impact": "The plan will consider the screens and controls people use to open your game."
+        },
+        {
+          "value": "desktop",
+          "label": "A computer app",
+          "impact": "The plan will consider installation and the computers you want to support."
+        },
+        {
+          "value": "mobile",
+          "label": "On a phone or tablet",
+          "impact": "The plan will consider touch controls, small screens and how people get the game."
+        }
+      ]
+    }
+  ],
+  "next_steps": [
+    {
+      "title": "Start with your game description",
+      "detail": "You write what you want to make. We keep your wording and ask you about anything important that is missing."
+    },
+    {
+      "title": "Settle the practical choices",
+      "detail": "Together we consider who will play, where it will run, difficulty and the size of the first version. Any AI recommendation is clearly labelled."
+    },
+    {
+      "title": "Review the plan before building",
+      "detail": "We add relevant research examples, proposed work and ways to check it. You can change the choices and approve a revised plan before building begins."
+    }
+  ],
+  "acceptance": [
+    "Your description is kept in your own words. Missing details become questions for you.",
+    "Practical recommendations fit your description and the people you want to play.",
+    "You can understand and change the plan, and nothing is built before you approve it."
+  ],
+  "boundaries": [
+    "This is an empty review template, not a proposed game or permission to build.",
+    "The AI does not write, expand or rewrite your game description.",
+    "Publishing a game or spending money needs a separate agreement."
+  ],
+  "risks": [],
+  "open_questions": [
+    "Your game description is still needed."
+  ],
+  "inspirations": [],
+  "development": {
+    "purpose": "proposal",
+    "stage": "idea",
+    "updated": "2026-09-12",
+    "summary": "We are waiting for your idea. No game-specific choices, reference research or building have begun.",
+    "next": "Write your description above, then prepare a reply and return it in chat.",
+    "approved_plan": null,
+    "milestones": [
+      {
+        "title": "Receive your description",
+        "status": "planned",
+        "detail": "Your own account of the game you want to create.",
+        "evidence": null
+      },
+      {
+        "title": "Prepare a plan with you",
+        "status": "planned",
+        "detail": "Ask focused questions and explain the practical recommendations that follow from your description.",
+        "evidence": null
+      }
+    ],
+    "change_note": "A blank template ready for the user's own game description."
+  }
+}

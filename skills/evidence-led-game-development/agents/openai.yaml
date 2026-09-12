@@ -1,0 +1,4 @@
+interface:
+  display_name: "General Game Development"
+  short_description: "Design, build and playtest games across genres"
+  default_prompt: "Use $evidence-led-game-development. I want to make a game."

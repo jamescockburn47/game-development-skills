@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open World Game Development"
+  short_description: "Build and assess coherent open worlds"
+  default_prompt: "Use $open-world-game-development. I want to make an open-world game."
